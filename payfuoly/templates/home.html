@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FunOlympic</title>
+    <!-- Bootstrap CSS link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        /* Custom CSS styles */
+        .about-section {
+            background-color: #fff;
+            padding: 50px 0;
+            text-align: center;
+        }
+        .about-card {
+            margin-bottom: 30px;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .about-card .card-img-top {
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            height: 200px; /* Adjust card image height */
+            object-fit: cover;
+        }
+        .about-card .card-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .about-card .card-text {
+            font-size: 16px;
+        }
+        .about-card .btn-primary {
+            background-color: #1a73e8; /* Primary button color */
+            border-color: #1a73e8;
+        }
+        .about-card .btn-primary:hover {
+            background-color: #1251b5; /* Primary button hover color */
+            border-color: #1251b5;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" data-bs-theme="dark">  
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <img src="https://source.unsplash.com/mF9m6BRHCtg/40x40" alt="Logo">
+                {% comment %} <span>FunOlympic</span> {% endcomment %}
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/broadcast">Broadcast</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/schedule">Schedule</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/news">News</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <!-- Conditional login/signout links -->
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/signout">Sign Out</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/signup">Sign Up</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/signin">Sign In</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    {% comment %} <div class="container-fluid mt-0 px-0">
+        <!-- Carousel -->
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active" id="carousel-item-1">
+                    <img src="https://source.unsplash.com/mF9m6BRHCtg/1000x300" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item" id="carousel-item-2">
+                    <img src="https://source.unsplash.com/Lno6-CxVXgo/1000x300" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item" id="carousel-item-3">
+                    <img src="https://source.unsplash.com/JjUyjE-oEbM/1000x300" class="d-block w-100" alt="...">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div> {% endcomment %}
+    {% comment %} <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="https://source.unsplash.com/mF9m6BRHCtg/1000x300" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="https://source.unsplash.com/3R4vPrSB1c4/1000x300" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="https://source.unsplash.com/JjUyjE-oEbM/1000x300" class="d-block w-100" alt="...">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+    </div> {% endcomment %}
+    <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="1000">
+            <img src="https://source.unsplash.com/gn2_l3lGMZM/1000x300" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item" data-bs-interval="2000">
+            <img src="https://source.unsplash.com/JjUyjE-oEbM/1000x300" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="https://source.unsplash.com/mF9m6BRHCtg/1000x300" class="d-block w-100" alt="...">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    <!-- About Us Section -->
+    <section class="about-section">
+        <div class="container">
+            <h2>About Us</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card about-card">
+                        <img src="https://source.unsplash.com/mF9m6BRHCtg/1000x300" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Our Mission</h5>
+                            <p class="card-text">At Fun Olympics, our mission is to inspire a global community through the joy of sports and camaraderie. 
+                                We aim to promote inclusivity, foster excellence, and celebrate the spirit of competition, uniting people from all walks of life in the pursuit of fun and athleticism. 
+                                Sed euismod purus eu dignissim fermentum.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card about-card">
+                        <img src="https://source.unsplash.com/3R4vPrSB1c4/1000x300" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Our Vision</h5>
+                            <p class="card-text">We envision a world where every individual, 
+                                regardless of background or ability, 
+                                finds empowerment and fulfillment through participation in sports.
+                                 Through our platform, we strive to create unforgettable moments of laughter, friendship, 
+                                and triumph that transcend borders and inspire generations.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card about-card">
+                        <img src="https://source.unsplash.com/JjUyjE-oEbM/1000x300" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Our Values</h5>
+                            <p class="card-text">Fun Olympics is built on a foundation of integrity, respect, and passion. 
+                                We believe in fair play, teamwork, and the relentless pursuit of personal and collective goals. 
+                                Above all, we cherish the joy of play and the universal bonds it forges among athletes and fans alike.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"></script>
+</body>
+</html>
